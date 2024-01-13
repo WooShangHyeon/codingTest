@@ -1,16 +1,32 @@
-# def solution(prices):
-#     length = len(prices)
-#     answer = [ i for i in range (length - 1, -1, -1)]
+def solution(genres, plays):
+    answer = []
+    cnt = 0
+    cnt = 2
+    a = {}
+    b = {}
+    c = {}
+    for i in range(len(genres)):
+        genre = genres[i]
+        numOfPlay = plays[i]
+        if genre in a :
+            a[genre] += numOfPlay
+            if plays[b[genre]] < numOfPlay:
+                c[genre] = b[genre]
+                b[genre] = i
+            elif plays[b[genre]] == numOfPlay:
+                    c[genre] = i
+            else:
+                if genre not in c or plays[c[genre]] < numOfPlay:
+                    c[genre] = i
+        else:
+            a[genre] = numOfPlay
+            b[genre] = i
 
-#     stack = [0]
-#     for i in range (1, length, 1):
-#         while stack and prices[stack[-1]] > prices[i]:
-#             j = stack.pop()
-#             answer[j] = i - j
-#         stack.append(i)
-#     return answer
-
-# solution([1, 2, 3, 2, 3])
-
-a=[1,2,3]
-print(a.reverse())
+    while a and cnt > 0:
+        x = max(a, key=a.get)
+        a.pop(x)
+        answer.append(b[x])
+        if x in c:
+            answer.append(c[x])
+        
+    return answer

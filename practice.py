@@ -1,16 +1,10 @@
-from collections import defaultdict 
-def solution(tickets):
-    answer = []
+import pyautogui
+import time
 
-    graph = defaultdict(list)
+print(pyautogui.size()) # 현재 모니터의 크기 파악
 
-    N = len(tickets)
-    for ticket in tickets:
-        graph[ticket[0]].append(ticket[1])
-        graph[ticket[0]].sort()
+time.sleep(10) # 마우스를 움직일 시간 추가 (카톡프로필로 들어가서 공감위치에 마우스 올리기)
+print(pyautogui.position()) # 마우스의 현재 위치 표시
 
-    
-    print(graph)
-    return answer
-
-print(solution([["ICN", "SFO"], ["ICN", "ATL"], ["SFO", "ATL"], ["ATL", "ICN"], ["ATL", "SFO"]]))
+# 현재위치에서 자동클릭
+pyautogui.click(clicks=1000, interval=0.01) #클릭횟수, 클릭시간차

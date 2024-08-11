@@ -1,10 +1,17 @@
-import pyautogui
-import time
+# a b 각각 현재 시각, 시와 분
+# c 요리에 필요한 시간
 
-print(pyautogui.size()) # 현재 모니터의 크기 파악
+# 23:59분 이후에는 00:00
 
-time.sleep(10) # 마우스를 움직일 시간 추가 (카톡프로필로 들어가서 공감위치에 마우스 올리기)
-print(pyautogui.position()) # 마우스의 현재 위치 표시
-
-# 현재위치에서 자동클릭
-pyautogui.click(clicks=1000, interval=0.01) #클릭횟수, 클릭시간차
+a,b = map(int,input().split())
+c = int(input())
+c_1 = c // 60
+c_2 = c % 60
+res_h = a+c_1
+res_t = b+c_2
+if res_t >=60 :
+    res_h += res_t // 60
+    res_t = res_t % 60 
+if res_h >= 24:
+    res_h -= 24
+print(f"{res_h} {res_t}")
